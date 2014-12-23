@@ -1,0 +1,31 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./winDelStudente"?>
+<?page title="Eliminazione Soggetto" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="winDelStudente" title="Eliminazione Studente" border="normal" apply="it.awta.awtagest.DelSoggettoViewCtrl" width="600px">
+   <bandbox id="bd" mold="rounded">
+	   	<attribute name="onCreate"/>
+	   	<attribute name="onSelect"/>
+        <bandpopup width="400px" height="400px">
+            <listbox id="lstbxStudenti" mold="paging" pageSize="10" onSelect="bd.value=self.selectedItem.label; bd.close();">
+		        <auxhead>
+		            <auxheader colspan="3" class="topic">Lista Studenti</auxheader>
+		        </auxhead>
+                <listhead>
+                <listheader label="Cognome" />
+                  <listheader label="Nome" />
+                  <listheader label="Scuola" />
+                </listhead>
+                <listitem self="@{each=Soggetto}" value="@{Soggetto}">
+                	<listcell label="@{Soggetto.sgCognome}"/>
+                	<listcell label="@{Soggetto.sgNome}"/>
+                	<listcell label="@{Soggetto.scuola.scNome}"/>
+                </listitem>
+            </listbox>
+        </bandpopup>
+    </bandbox>
+    <button id="delBtn">
+    	<attribute name="onClick"/>
+    	Cancella
+    </button>
+</window>
+</zk>

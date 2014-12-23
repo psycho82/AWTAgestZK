@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-apr-2011 16.31.09 by Hibernate Tools 3.4.0.Beta1 -->
+<hibernate-mapping>
+ <class catalog="mydb" name="it.awta.awtagest.Rinnovo" table="rinnovo">
+  <id name="idRinnovo" type="java.lang.Integer">
+   <column name="idRinnovo"/>
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="sgCodeRinnovo"
+   not-null="true" type="int">
+   <column name="sgCodeRinnovo" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="dataRinnovo" type="date">
+   <column length="10" name="dataRinnovo" not-null="true"/>
+  </property>
+ </class>
+</hibernate-mapping>

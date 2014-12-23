@@ -1,0 +1,15 @@
+<?page title="Ricerca Associato" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Ricerca Associato" border="normal" width="600px">
+<zscript>
+<![CDATA[
+    import java.util.Date;
+    import java.text.SimpleDateFormat;
+    import it.awta.awtagest.*;
+    //List allEvents = new EventDAO().findAll();
+	Soggetto sog = new SoggettoHome().findById(954);
+	alert(sog.getSgNome());
+]]>
+</zscript>
+</window>
+</zk>

@@ -1,0 +1,64 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./winModIstruttore"?>
+<?page title="Modifica Istruttore" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="winModIstruttore" title="Modifica Istruttore" border="normal" apply="it.awta.awtagest.ModIstruttoreViewCtrl" width="600px">
+   	<combobox width="200px" id="cbxIstruttore" model="@{Istruttore}" autocomplete="true">
+      	<attribute name="onCreate"/>
+      	<attribute name="onSelect"/>
+      	<comboitem self="@{each=istruttore}" label="@{istruttore.istCognome}" value="@{istruttore}" description="@{istruttore.istNome}"/>
+			</combobox>
+<!--
+   <bandbox id="bd" mold="rounded" autodrop="true">
+   <attribute name="onCreate"/>
+        <bandpopup>
+            <listbox id="lstbxIstruttori" height="248px" width="300px" mold="paging" pageSize="5">
+            <attribute name="onSelect"/>
+                <listhead>
+                    <listheader label="Nome"/>
+                    <listheader label="Cognome"/>
+                </listhead>
+                <listitem self="@{each=Istruttore}" value="@{Istruttore}">
+                	<listcell label="@{Istruttore.istCognome}"/>
+                	<listcell label="@{Istruttore.istNome}"/>
+                </listitem>
+            </listbox>
+        </bandpopup>
+    </bandbox>
+-->
+	<button id="findBtn">
+	Cerca
+	</button>
+<grid id="gridIstruttore" visible="false">
+	<columns>
+    	<column width="130px">Dettaglio</column>
+        <column hflex="5">Valore</column>
+	</columns>
+    <rows>
+    <row>
+        	<label value="ID"/>
+            <intbox id="IstId" disabled="true"/>
+		</row> 
+    	<row>
+        	<label value="Nome"/>
+            <textbox width="150px" id="IstNome" constraint="no empty"/>
+		</row>    
+    	<row>
+        	<label value="Cognome" />
+            <textbox width="150px" id="IstCognome"/>
+		</row>    
+    	<row>
+        	<label value="Grado" />
+            <textbox value="" width="150px" id="IstGrado" multiline="true" height="70px" maxlength="45"/>
+		</row>
+		<row>
+		</row>
+		<row spans="2">
+		<button id="saveBtn">
+			<attribute name="onClick"/>
+			Salva
+		</button>
+		</row>						
+	</rows>
+</grid>    
+</window>
+</zk>

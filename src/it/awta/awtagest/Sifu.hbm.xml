@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-mar-2011 0.22.02 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class catalog="mydb" name="it.awta.awtagest.Sifu" table="sifu">
+  <id name="sifuId" type="int">
+   <column name="sifu_id"/>
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="sifuNome" type="string">
+   <column length="45" name="sifu_nome"/>
+  </property>
+  <property generated="never" lazy="false" name="sifuCognome" type="string">
+   <column length="45" name="sifu_cognome"/>
+  </property>
+  <set fetch="select" inverse="true" lazy="true" name="soggettos"
+   sort="unsorted" table="soggetto">
+   <key>
+    <column name="sifu_id"/>
+   </key>
+   <one-to-many class="it.awta.awtagest.Soggetto"/>
+  </set>
+ </class>
+</hibernate-mapping>

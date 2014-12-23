@@ -1,0 +1,64 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./winNuovaSezione"?>
+<?page title="Inserimento nuova sezione" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Inserimento nuova sezione" border="normal" id="winNuovaSezione" apply="it.awta.awtagest.NuovaSezioneViewCtrl">
+<separator orient="horizontal" height="20px"/>
+<hbox spacing="10px">
+	<label value="Città"/>
+	<textbox id="cittaEsame" constraint="no empty"/>
+	<label value="Data"/>
+	<datebox id="dataEsame" constraint="no empty" format="dd-MM-yyyy"/>
+	<label value="Insegnante/Sifu"/>
+	<textbox id="esaminatore" constraint="no empty"/>
+</hbox>
+<separator orient="horizontal" height="20px"/>
+	<listbox width="855px" mold="paging" pageSize="10" id="lstbxStudenti" visible="true" model="@{WsSezione}">
+			<auxhead>
+				<auxheader colspan="5" align="center" label="Registrazione sezioni"></auxheader>
+			</auxhead>
+        <listhead>
+            <listheader label="Cognome" hflex="2"/>
+            <listheader label="Nome" hflex="3"/>
+            <listheader label="N. tessera" hflex="3"/>
+            <listheader label="N. Attestato" hflex="4"/>
+            <listheader label="Grado" hflex="3"/>
+        </listhead>
+                <listitem self="@{each=WsSezione}" value="@{WsSezione}">
+                	<listcell label="@{WsSezione.soggetto.sgCognome}"/>
+                	<listcell label="@{WsSezione.soggetto.sgNome}"/>
+                	<listcell label="@{WsSezione.soggetto.sgCode}"/>
+                	<listcell label="@{WsSezione.wssezAttestato}"/>
+                	<listcell label="@{WsSezione.soggetto.sgGrado}"/>
+                </listitem>
+	</listbox>
+		<separator orient="horizontal" height="20px"/>
+<hbox>
+	<label value="Numero Tessera"/>
+	<intbox id="sgCode" constraint="no empty">
+		<attribute name="onChange"/>
+	</intbox>
+	<label value="Grado"/>
+	<textbox id="sgGrado" constraint="no empty" width="70px">
+		<attribute name="onChange"/>
+	</textbox>
+	<!--
+	<combobox id="sgGrado" constraint="no empty" readonly="true" width="70px">
+		<attribute name="onSelect"/>
+		<comboitem label="1 GS"/>
+		<comboitem label="2 GS"/>
+		<comboitem label="3 GS"/>
+		<comboitem label="4 GS"/>
+		<comboitem label="5 GS"/>
+		<comboitem label="6 GS"/>
+		<comboitem label="7 GS"/>
+	</combobox>
+	-->
+	<label value="Sezione"/>
+	<combobox id="sgSezione" constraint="no empty" model="@{Sezione}" autocomplete="true">
+    <comboitem self="@{each=sezione}" label="@{sezione.sezNome}" value="@{sezione}" description="@{sezione.sezGrado}"/>
+	</combobox>
+	<!--<label id="lblNewGrado" value="Nuovo Grado:"/>
+--></hbox>
+<button label="Inserisci" id="insertBtn"/>
+</window>
+</zk>

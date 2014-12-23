@@ -1,0 +1,32 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./winCancellaEsame"?>
+<?page title="Cancellazione Esame" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Cancellazione Esame" border="normal" id="winCancellaEsame">
+	<vbox spacing="15px">
+		<hbox spacing="15px" align="center">
+			<label value="N. Attestato: "/>
+			<textbox id="tbxAttestato"/>
+		</hbox>
+		<button id="searchBtn" label="Cerca"/>
+		<listbox mold="paging" pageSize="10" id="lstbxEsamiFromCognome" visible="false" model="@{WtEsame}" width="600px">
+			<auxhead>
+				<auxheader colspan="5" align="center" label="Esami sostenuti"/>
+			</auxhead>
+	        <listhead>
+	        	<listheader label="Attestato" hflex="1"/>
+	        	<listheader label="Grado" hflex="1"/>
+	        	<listheader label="Data" hflex="3"/>
+	        	<listheader label="Esaminatore" hflex="2"/>
+	            <listheader label="Città" hflex="3"/>
+	        </listhead>
+	        <listitem self="@{each=WtEsame}" value="@{WtEsame}">
+	        	<listcell label="@{WtEsame.esAttestato}"/>
+	            <listcell label="@{WtEsame.esGrado}"/>
+	            <listcell label="@{WtEsame.esDataString}"/>
+	            <listcell label="@{WtEsame.esInsSifu}"/>
+	            <listcell label="@{WtEsame.esCitta}"/>
+	        </listitem>
+		</listbox>
+	</vbox>
+</window>
+</zk>

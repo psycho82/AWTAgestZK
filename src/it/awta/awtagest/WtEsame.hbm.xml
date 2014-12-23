@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-mar-2011 0.22.02 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class catalog="mydb" name="it.awta.awtagest.WtEsame" table="wt_esame">
+  <id name="esId" type="int">
+   <column name="es_id"/>
+   <generator class="identity"/>
+  </id>
+  <many-to-one class="it.awta.awtagest.Soggetto" fetch="select" name="soggetto" lazy="false">
+   <column name="sg_id" not-null="true"/>
+  </many-to-one>
+  <property generated="never" lazy="false" name="esAttestato" type="string">
+   <column length="45" name="es_attestato"/>
+  </property>
+  <property generated="never" lazy="false" name="esGrado" type="string">
+   <column length="45" name="es_grado"/>
+  </property>
+  <property generated="never" lazy="false" name="esData" type="date">
+   <column length="0" name="es_data"/>
+  </property>
+  <property generated="never" lazy="false" name="esInsSifu" type="string">
+   <column length="45" name="es_ins_sifu"/>
+  </property>
+  <property generated="never" lazy="false" name="esCitta" type="string">
+   <column length="45" name="es_citta"/>
+  </property>
+ </class>
+	<sql-query name="getEsamiFromSoggetto">
+		<return alias="c" class="it.awta.awtagest.WtEsame"/>
+		<![CDATA[
+			SELECT * FROM wt_esame where sg_id = :sgid
+		]]>
+  	</sql-query>
+  	<sql-query name="getAllCognomiEsaminatori">
+		<![CDATA[
+			select distinct es_ins_sifu from wt_esame
+		]]>
+  	</sql-query>
+</hibernate-mapping>

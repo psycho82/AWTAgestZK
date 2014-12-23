@@ -1,0 +1,111 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./addStudente"?>
+<?page title="Inserimento nuovo Studente" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="addStudente" title="Inserimento nuovo Studente" border="normal" width="600px" apply="it.awta.awtagest.AddStudenteViewCtrl">
+<grid>
+	<columns>
+    	<column width="130px">Dettaglio</column>
+      <column hflex="5">Valore</column>
+	</columns>
+    <rows>
+    	<row>
+        	<label value="Iscrizione n."/>
+            <intbox width="50px" id="SgCode" constraint="no empty"/>
+		</row>    
+    	<row>
+        	<label value="Entrata AWTA" />
+          	<datebox width="150px" id="SgIscrizione" format="dd-MM-yyyy"/>
+		</row>
+	    <row>
+	    	<label value="Grado" />
+	      	<textbox value="" width="150px" id="SgGrado" constraint="no empty"/>
+		</row>  
+    	<row>
+        	<label value="Cognome" />
+            <textbox value="" width="150px" id="SgCognome" constraint="no empty"/>
+		</row>
+    	<row>
+        	<label value="Nome" />
+            <textbox value="" width="150px" id="SgNome" constraint="no empty"/>
+		</row>
+    	<row>
+        	<label value="Nato il" />
+           	<datebox width="150px" id="SgNascita" format="dd-MM-yyyy"/>
+		</row>
+    	<row>
+        	<label value="a" />
+           	<textbox value="" width="150px" id="SgComunenasc"/>
+		</row>		
+    	<row>
+        	<label value="Via" />
+            <textbox value="" width="150px" id="SgIndirizzo"/>
+		</row>
+    	<row>
+        	<label value="Città" />
+            <textbox value="" width="150px" id="SgComune"/>
+		</row>
+    	<row>
+        	<label value="Provincia" />
+            <textbox value="" width="30px" maxlength="2" id="SgProvincia"/>
+		</row>		
+    	<row>
+        	<label value="Regione" />
+            <textbox value="" width="150px" id="SgRegione"/>
+		</row>
+		<row>
+    	<label value="Scuola" />
+    	<!--
+		   <bandbox id="bd" mold="rounded" autodrop="true">
+		   	<attribute name="onCreate"/>
+		   	<attribute name="onSelect"/>
+		        <bandpopup>
+		            <listbox id="SgScuola" height="248px" width="300px" mold="paging" pageSize="5" onSelect="bd.value=self.selectedItem.label; bd.close();">
+				        <auxhead>
+				            <auxheader colspan="2" class="topic">Lista Scuole</auxheader>
+				        </auxhead>
+		                <listhead>
+		                    <listheader label="Comune" />
+		                    <listheader label="Nome" />
+		                </listhead>
+		                <listitem self="@{each=Scuola}" value="@{Scuola}">
+		                	<listcell label="@{Scuola.scComune}"/>
+		                	<listcell label="@{Scuola.scNome}"/>
+		                </listitem>
+		            </listbox>
+		        </bandpopup>
+		    </bandbox>    	
+      -->
+      <combobox width="150px" id="cbxSgScuola" model="@{Scuola}" autocomplete="true">
+      	<attribute name="onCreate"/>
+      	<attribute name="onSelect"/>
+      	<comboitem self="@{each=scuola}" label="@{scuola.scComune}" value="@{scuola}" description="@{scuola.scNome}"/>
+			</combobox>			
+		</row>
+    <row>
+    	<label value="Sifu"/>
+      <combobox width="150px" id="SgSifu" model="@{Sifu}" autocomplete="true" readonly="true">
+      	<attribute name="onCreate"/>
+      	<comboitem self="@{each=sifu}" label="@{sifu.sifuCognome}" value="@{sifu}" description="@{sifu.sifuNome}"/>
+			</combobox>
+		</row>
+		    <row>
+    	<label value="Istruttore 1"/>
+      <combobox width="150px" id="SgIstruttore1" model="@{Istruttore}" autocomplete="true" readonly="true">
+      	<attribute name="onCreate"/>
+      	<comboitem self="@{each=istruttore}" label="@{istruttore.istCognome}" value="@{istruttore}" description="@{istruttore.istNome}"/>
+			</combobox>
+		</row>
+		    <row>
+    	<label value="Istruttore 2"/>
+      <combobox width="150px" id="SgIstruttore2" model="@{Istruttore}" autocomplete="true">
+      	<attribute name="onCreate"/>
+      	<comboitem self="@{each=istruttore}" label="@{istruttore.istCognome}" value="@{istruttore}" description="@{istruttore.istNome}"/>
+			</combobox>
+		</row>
+		<row spans="2">
+		<button id="saveBtn">Salva</button>
+		</row>						
+	</rows>
+</grid>
+</window>
+</zk>

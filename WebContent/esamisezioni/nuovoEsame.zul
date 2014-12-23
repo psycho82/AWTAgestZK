@@ -1,0 +1,43 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./winNuovoEsame"?>
+<?page title="Inserimento nuovo esame" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Inserimento nuovo esame" border="normal" id="winNuovoEsame" apply="it.awta.awtagest.NuovoEsameViewCtrl">
+<separator orient="horizontal" height="20px"/>
+<hbox spacing="10px">
+	<label value="Città"/>
+	<textbox id="cittaEsame" constraint="no empty"/>
+	<label value="Data"/>
+	<datebox id="dataEsame" constraint="no empty" format="dd-MM-yyyy"/>
+	<label value="Insegnante/Sifu"/>
+	<textbox id="esaminatore" constraint="no empty"/>
+</hbox>
+<separator orient="horizontal" height="20px"/>
+	<listbox width="855px" mold="paging" pageSize="10" id="lstbxStudenti" visible="true" model="@{WtEsame}">
+			<auxhead>
+				<auxheader colspan="5" align="center" label="Registrazione esami"></auxheader>
+			</auxhead>
+        <listhead>
+            <listheader label="Cognome" hflex="2"/>
+            <listheader label="Nome" hflex="3"/>
+            <listheader label="N. tessera" hflex="3"/>
+            <listheader label="N. Attestato" hflex="4"/>
+            <listheader label="Grado" hflex="3"/>
+        </listhead>
+                <listitem self="@{each=WtEsame}" value="@{WtEsame}">
+                	<listcell label="@{WtEsame.soggetto.sgCognome}"/>
+                	<listcell label="@{WtEsame.soggetto.sgNome}"/>
+                	<listcell label="@{WtEsame.soggetto.sgCode}"/>
+                	<listcell label="@{WtEsame.esAttestato}"/>
+                	<listcell label="@{WtEsame.soggetto.sgGrado}"/>
+                </listitem>
+		</listbox>
+<separator orient="horizontal" height="20px"/>
+<label value="Numero Tessera"/>
+<intbox id="sgCode" constraint="no empty"/>
+<label value="N. Attestato"/>
+<textbox id="sgAttestato" constraint="no empty"/>
+<label value="Grado"/>
+<textbox id="sgGrado" constraint="no empty"/>
+<button label="Inserisci" id="insertBtn"/>
+</window>
+</zk>

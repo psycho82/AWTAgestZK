@@ -1,0 +1,15 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./winDelSifu"?>
+<?page title="Eliminazione Istruttore" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="winDelSifu" title="Eliminazione Sifu" border="normal" apply="it.awta.awtagest.DelSifuViewCtrl" width="600px">
+			<combobox width="200px" id="cbxSifu" model="@{Sifu}" autocomplete="true">
+      	<attribute name="onCreate"/>
+      	<attribute name="onSelect"/>
+      	<comboitem self="@{each=sifu}" label="@{sifu.sifuCognome}" value="@{sifu}" description="@{sifu.sifuNome}"/>
+			</combobox>
+    <button id="delBtn">
+    	<attribute name="onClick"/>
+    	Cancella
+    </button>
+</window>
+</zk>

@@ -1,0 +1,17 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./winModTessera"?>
+<?page title="Modifica Numero di Tessera" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="winModTessera" title="Modifica Numero di Tessera" border="normal" apply="it.awta.awtagest.ModTesseraViewCtrl" width="600px">
+   	<hbox>
+	   	<vbox>
+	   		<label>Numero di tessera corrente</label>
+	   		<intbox id="prevTessera" width="150px"/>
+	   	</vbox>
+	   	<vbox>
+	   		<label>Nuovo numero di tessera</label>
+	   		<intbox id="nextTessera" width="150px"/>
+	   	</vbox>
+	</hbox>
+	<button id="saveBtn">Salva</button>
+</window>
+</zk>

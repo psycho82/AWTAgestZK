@@ -1,0 +1,65 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./winModScuola"?>
+<?page title="Modifica Scuola" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="winModScuola" title="Modifica Scuola" border="normal" apply="it.awta.awtagest.ModScuolaViewCtrl" width="600px">
+	<label>Inserire la città della Scuola (Maiuscolo)</label>
+<separator orient="horizontal" height="5px"/>
+	<combobox width="200px" id="cbxScComune" autodrop="true" buttonVisible="false">
+		<attribute name="onCreate"/>
+		<attribute name="onSelect"/>
+	</combobox>
+<separator orient="horizontal" height="20px"/>
+			<listbox id="lstbxScuole" width="200px" visible="false">
+                <listhead>
+                    <listheader label="Nome" />
+                </listhead>
+                <listitem self="@{each=Scuola}" value="@{Scuola}">
+                	<listcell label="@{Scuola.scNome}"/>
+                </listitem>
+            </listbox>   
+<separator orient="horizontal" height="20px"/>
+<grid visible="false" id="gridScuola">
+	<columns>
+    	<column width="130px">Dettaglio</column>
+        <column hflex="5">Valore</column>
+	</columns>
+    <rows>
+   	<row>
+        	<label value="ID"/>
+            <intbox id="ScId" disabled="true"/>
+		</row>  
+    	<row>
+        	<label value="Nome"/>
+            <textbox width="150px" id="ScNome" constraint="no empty"/>
+		</row>    
+    	<row>
+        	<label value="Indirizzo" />
+            <textbox width="150px" id="ScIndirizzo"/>
+		</row>    
+    	<row>
+        	<label value="Comune" />
+            <textbox value="" width="150px" id="ScComune"/>
+		</row>
+    	<row>
+        	<label value="Provincia" />
+            <textbox value="" width="30px" maxlength="2" id="ScProvincia"/>
+		</row>		
+    	<row>
+        	<label value="Regione" />
+            <textbox value="" width="150px" id="ScRegione"/>
+		</row>
+    	<row>
+        	<label value="Nazione" />
+            <textbox value="" width="150px" id="ScNazione"/>
+		</row>
+		<row>
+        	<label value="Note" />
+            <textbox value="" width="150px" height="100px" id="ScNote" multiline="true" maxlength="200"/>
+		</row>
+		<row spans="2">
+		<button id="saveBtn">Salva</button>
+		</row>						
+	</rows>
+</grid>    
+</window>
+</zk>

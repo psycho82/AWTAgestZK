@@ -1,0 +1,42 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./winRinnovo"?>
+<?page title="Pagina di rinnovo annuale" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Pagina di rinnovo annuale" border="normal" apply="it.awta.awtagest.RinnovoViewCtrl" id="winRinnovo">
+<listbox width="855px" mold="paging" pageSize="6" id="lstbxSoggetti" visible="true" model="@{Soggetto}">
+<attribute name="onSelect"/>
+		<auxhead>
+				<auxheader colspan="9" align="center" label="Tessere da rinnovare"/>
+			</auxhead>
+        <listhead>
+            <listheader label="Iscrizione N." hflex="2"/>
+            <listheader label="Data" hflex="3"/>
+            <listheader label="Cognome" hflex="3"/>
+            <listheader label="Nome" hflex="4"/>
+            <!--<listheader label="Rinnovo" hflex="3"/>-->
+        </listhead>
+				<listitem self="@{each=soggetto}" value="@{soggetto}">
+					<listcell label="@{soggetto.sgCode}"/>
+					<listcell label="@{soggetto.sgIscrizione}"/>
+					<listcell label="@{soggetto.sgCognome}"/>
+					<listcell label="@{soggetto.sgNome}"/>
+				</listitem>
+		</listbox>
+		<separator orient="horizontal" height="20px"></separator>
+<vbox spacing="10px">
+	<hbox spacing="10px">
+		<label value="Nome"/>
+		<textbox id="tbxNome" readonly="true"/>
+		<label value="Cognome"/>
+		<textbox id="tbxCognome" readonly="true"/>
+		<label value="Numero di tessera"/>
+		<intbox id="ibxNumeroTessera"/>
+		<button label="Cerca" id="ricercaBtn"/>
+	</hbox>
+	<hbox>
+		<label value="Rinnovo"/>
+		<datebox id="dbxRinnovo" constraint="no empty" format="dd-MM-yyyy"/>
+		<button id="rinnovaBtn" label="Rinnova"/>
+	</hbox>
+</vbox>
+</window>
+</zk>

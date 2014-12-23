@@ -1,0 +1,159 @@
+drop table if exists istruttore;
+
+drop table if exists istruzione;
+
+drop table if exists scuola;
+
+drop table if exists sezione;
+
+drop table if exists sifu;
+
+drop table if exists soggetto;
+
+drop table if exists ws_sezione;
+
+drop table if exists wt_esame;
+
+/*==============================================================*/
+/* Table: istruttore                                            */
+/*==============================================================*/
+create table istruttore
+(
+   ist_id               int(11) not null auto_increment,
+   ist_nome             varchar(45),
+   ist_cognome          varchar(45),
+   ist_grado            varchar(45) not null,
+   primary key (ist_id)
+)
+type = InnoDB;
+
+/*==============================================================*/
+/* Table: istruzione                                            */
+/*==============================================================*/
+create table istruzione
+(
+   sg_id                int not null,
+   ist_id               int not null,
+   primary key (sg_id, ist_id)
+)
+type = InnoDB;
+
+/*==============================================================*/
+/* Table: scuola                                                */
+/*==============================================================*/
+create table scuola
+(
+   sc_id                int(11) not null auto_increment,
+   sc_nome              varchar(45),
+   sc_indirizzo         varchar(45),
+   sc_comune            varchar(45),
+   sc_regione           varchar(45),
+   sc_nazione           varchar(45),
+   sc_note              varchar(100),
+   sc_provincia         varchar(2),
+   primary key (sc_id)
+)
+type = InnoDB;
+
+/*==============================================================*/
+/* Table: sezione                                               */
+/*==============================================================*/
+create table sezione
+(
+   sez_nome             varchar(45) not null,
+   sez_grado            varchar(45),
+   primary key (sez_nome)
+)
+type = InnoDB;
+
+/*==============================================================*/
+/* Table: sifu                                                  */
+/*==============================================================*/
+create table sifu
+(
+   sifu_id              int not null,
+   sifu_nome            varchar(45),
+   sifu_cognome         varchar(45),
+   primary key (sifu_id)
+)
+type = InnoDB;
+
+/*==============================================================*/
+/* Table: soggetto                                              */
+/*==============================================================*/
+create table soggetto
+(
+   sg_id                int(11) not null auto_increment,
+   sc_id                int not null,
+   sifu_id              int,
+   sg_code              int not null,
+   sg_iscrizione        date not null,
+   sg_cognome           varchar(45) not null,
+   sg_nome              varchar(45) not null,
+   sg_nascita           date,
+   sg_comunenasc        varchar(45),
+   sg_indirizzo         varchar(45),
+   sg_comune            varchar(45),
+   sg_provincia         varchar(2),
+   sg_regione           varchar(45),
+   sg_nazione           varchar(20),
+   sg_note              varchar(100),
+   sg_grado             varchar(45),
+   primary key (sg_id),
+   key AK_SG_CODE_UNIQUE (sg_code)
+)
+type = InnoDB;
+
+/*==============================================================*/
+/* Table: ws_sezione                                            */
+/*==============================================================*/
+create table ws_sezione
+(
+   wssez_id             int not null,
+   sg_id                int,
+   sez_nome             varchar(45),
+   wssez_attestato      varchar(45),
+   wssez_grado          varchar(45),
+   wssez_data           date,
+   wssez_ins_sifu       varchar(45),
+   wssez_citta          varchar(45),
+   primary key (wssez_id)
+)
+type = InnoDB;
+
+/*==============================================================*/
+/* Table: wt_esame                                              */
+/*==============================================================*/
+create table wt_esame
+(
+   es_id                int not null,
+   sg_id                int not null,
+   es_attestato         varchar(45),
+   es_grado             varchar(45),
+   es_data              date,
+   es_ins_sifu          varchar(45),
+   es_citta             varchar(45),
+   primary key (es_id)
+)
+type = InnoDB;
+
+alter table istruzione add constraint FK_Relationship_10 foreign key (sg_id)
+      references soggetto (sg_id) on delete restrict on update restrict;
+
+alter table istruzione add constraint FK_Relationship_9 foreign key (ist_id)
+      references istruttore (ist_id) on delete restrict on update restrict;
+
+alter table soggetto add constraint FK_Relationship_7 foreign key (sifu_id)
+      references sifu (sifu_id) on delete restrict on update restrict;
+
+alter table soggetto add constraint FK_fk_soggetto_scuola foreign key (sc_id)
+      references scuola (sc_id) on delete restrict on update restrict;
+
+alter table ws_sezione add constraint FK_Relationship_12 foreign key (sez_nome)
+      references sezione (sez_nome) on delete restrict on update restrict;
+
+alter table ws_sezione add constraint FK_Relationship_13 foreign key (sg_id)
+      references soggetto (sg_id) on delete restrict on update restrict;
+
+alter table wt_esame add constraint FK_fk_esami_soggetto1 foreign key (sg_id)
+      references soggetto (sg_id) on delete restrict on update restrict;

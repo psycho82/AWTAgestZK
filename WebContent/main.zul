@@ -1,0 +1,196 @@
+<?page title="Main" id="main" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="AWTAgest" border="normal" id="mainWin">
+			<menubar id="menubar" visible="true" width="700px">
+			    <menu label="File">
+			        <menupopup>
+			        	<menuitem label="Logout">
+			        	<attribute name="onClick">
+				        	<![CDATA[
+								alert("Logout");
+			        		]]>
+			        	</attribute>
+			        	</menuitem>
+			        </menupopup>
+			    </menu>
+			    <menu label="Studenti" visible="true">
+			        <menupopup>
+			        	<menuitem label="Aggiungi" image="/img/add20.png">
+			            	<attribute name="onClick">
+			        				<![CDATA[
+												content.setSrc("/studente/addStudente.zul");
+							        ]]>
+										</attribute>
+			            </menuitem>
+			            <menuitem label="Modifica" image="/img/edit220.png">
+			            	<attribute name="onClick">
+		        				<![CDATA[
+											content.setSrc("/studente/modStudente.zul");
+						        ]]>
+							</attribute>
+			            </menuitem>
+			            <menu label="Rinnovi" image="/img/rinnovo.png">
+				            <menupopup>
+					           <menuitem label="Nuovo Rinnovo" image="/img/add20.png">
+					           		<attribute name="onClick">
+				        				<![CDATA[
+													content.setSrc("/rinnovo/addRinnovo.zul");
+								        ]]>
+									</attribute>
+					           </menuitem>
+					           <menuitem label="Elenco Rinnovi" image="/img/search20.png">
+					           		<attribute name="onClick">
+				        				<![CDATA[
+													content.setSrc("/rinnovo/elencoRinnovi.zul");
+								        ]]>
+									</attribute>
+					           </menuitem>
+					           <menuitem label="Scadenze" image="/img/search20.png">
+					           		<attribute name="onClick">
+				        				<![CDATA[
+													content.setSrc("/rinnovo/scadenze.zul");
+								        ]]>
+									</attribute>
+					           </menuitem>
+					        </menupopup>			            
+			            </menu>
+			           <menuitem label="Cancella" onClick="alert(self.label)" image="/img/delete20.png">
+			           		<attribute name="onClick">
+		        				<![CDATA[
+											content.setSrc("/studente/delStudente.zul");
+						        ]]>
+							</attribute>
+			           </menuitem>
+						<menuitem label="Mod. Tess." image="/img/edit20.png">
+			           		<attribute name="onClick">
+		        				<![CDATA[
+											content.setSrc("/studente/modTessera.zul");
+						        ]]>
+							</attribute>
+			           </menuitem>			           
+			        </menupopup>
+			    </menu>
+			    <menu label="Scuole" visible="true">
+			        <menupopup>
+			        	<menuitem label="Aggiungi" image="/img/add20.png">
+			            	<attribute name="onClick">
+		        				<![CDATA[
+											content.setSrc("/scuola/addScuola.zul");
+						        ]]>
+							</attribute>
+			            </menuitem>
+			             
+			            <menuitem label="Trova" image="/img/search20.png">
+			            	<attribute name="onClick">
+		        				<![CDATA[
+											content.setSrc("/scuola/modScuola.zul");
+						        ]]>
+										</attribute>
+			            </menuitem>
+			           
+			           <menuitem label="Cancella" onClick="alert(self.label)" image="/img/delete20.png">
+			           		<attribute name="onClick">
+		        				<![CDATA[
+											content.setSrc("/scuola/delScuola.zul");
+						        ]]>
+										</attribute>
+			           </menuitem>
+			                     
+			        </menupopup>
+			    </menu>
+			    <menu label="Sifu" visible="true">
+			        <menupopup>
+			        	<menuitem label="Aggiungi" image="/img/add20.png">
+			            	<attribute name="onClick">
+		        				<![CDATA[
+											content.setSrc("/sifu/addSifu.zul");
+						        ]]>
+										</attribute>
+			          </menuitem>
+			             
+			            <menuitem label="Trova" image="/img/search20.png">
+			            	<attribute name="onClick">
+		        				<![CDATA[
+											content.setSrc("/sifu/modSifu.zul");
+						        ]]>
+										</attribute>
+			            </menuitem>
+			           
+			           <menuitem label="Cancella" onClick="alert(self.label)" image="/img/delete20.png">
+			           		<attribute name="onClick">
+		        				<![CDATA[
+											content.setSrc("/sifu/delSifu.zul");
+						        ]]>
+										</attribute>
+			           </menuitem>
+			                     
+			        </menupopup>
+			    </menu>
+			    <menu label="Istruttori" visible="true">
+			        <menupopup>
+			        	<menuitem label="Aggiungi" image="/img/add20.png">
+			            	<attribute name="onClick">
+		        				<![CDATA[
+											content.setSrc("/istruttore/addIstruttore.zul");
+						        ]]>
+										</attribute>
+			          </menuitem>
+			             
+			            <menuitem label="Trova" image="/img/search20.png" visible="true">
+			            	<attribute name="onClick">
+		        				<![CDATA[
+											content.setSrc("/istruttore/modIstruttore.zul");
+						        ]]>
+										</attribute>
+			            </menuitem>
+			           
+			           <menuitem label="Cancella" image="/img/delete20.png" visible="true">
+			           		<attribute name="onClick">
+		        				<![CDATA[
+											content.setSrc("/istruttore/delIstruttore.zul");
+						        ]]>
+										</attribute>
+			           </menuitem>
+			                     
+			        </menupopup>
+			    </menu>
+			    <menu label="Esami - Sezioni" visible="true">
+			        <menupopup>
+			        	<menuitem label="Nuovo Esame" image="/img/add20.png">
+			            	<attribute name="onClick">
+		        				<![CDATA[
+											content.setSrc("/esamisezioni/nuovoEsame.zul");
+						        ]]>
+										</attribute>
+			          </menuitem>
+			          <menuitem label="Ricerca Esame" image="/img/search20.png">
+			            	<attribute name="onClick">
+		        				<![CDATA[
+											content.setSrc("/esamisezioni/ricercaEsame.zul");
+						        ]]>
+										</attribute>
+			          </menuitem>
+		            <menuitem label="Nuova Sezione" image="/img/add20.png">
+			            	<attribute name="onClick">
+		        				<![CDATA[
+											content.setSrc("/esamisezioni/nuovaSezione.zul");
+						        ]]>
+										</attribute>
+			            </menuitem>
+			           <menuitem label="Cancella" onClick="alert(self.label)" image="/img/delete20.png" visible="false">
+			           		<attribute name="onClick">
+		        				<![CDATA[
+											content.setSrc("/istruttore/delIstruttore.zul");
+						        ]]>
+										</attribute>
+			           </menuitem>
+			                     
+			        </menupopup>
+			    </menu>
+			</menubar>
+<separator orient="horizontal" height="50px"></separator>
+<hbox>
+	<include id="content"></include>
+</hbox>
+</window>
+</zk>

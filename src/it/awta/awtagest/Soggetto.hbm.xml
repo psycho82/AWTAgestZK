@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-mar-2011 0.22.02 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class catalog="mydb" name="it.awta.awtagest.Soggetto" table="soggetto">
+  <id name="sgId" type="java.lang.Integer">
+   <column name="sg_id"/>
+   <generator class="identity"/>
+  </id>
+  <many-to-one class="it.awta.awtagest.Sifu" fetch="select" lazy="false" name="sifu">
+   <column name="sifu_id"/>
+  </many-to-one>
+  <many-to-one class="it.awta.awtagest.Scuola" fetch="select" lazy="false" name="scuola">
+   <column name="sc_id" not-null="true"/>
+  </many-to-one>
+  <property generated="never" name="sgCode" type="int">
+   <column name="sg_code" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="sgIscrizione" type="date">
+   <column length="0" name="sg_iscrizione" not-null="false" sql-type="date"/>
+  </property>
+  <property generated="never" lazy="false" name="sgRinnovo" type="date">
+   <column length="0" name="sg_rinnovo" not-null="false" sql-type="date"/>
+  </property>
+  <property generated="never" lazy="false" name="sgCognome" type="string">
+   <column length="45" name="sg_cognome" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="sgNome" type="string">
+   <column length="45" name="sg_nome" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="sgNascita" type="date">
+   <column length="0" name="sg_nascita"/>
+  </property>
+  <property generated="never" lazy="false" name="sgComunenasc" type="string">
+   <column length="45" name="sg_comunenasc"/>
+  </property>
+  <property generated="never" lazy="false" name="sgIndirizzo" type="string">
+   <column length="45" name="sg_indirizzo"/>
+  </property>
+  <property generated="never" lazy="false" name="sgComune" type="string">
+   <column length="45" name="sg_comune"/>
+  </property>
+  <property generated="never" lazy="false" name="sgProvincia" type="string">
+   <column length="2" name="sg_provincia"/>
+  </property>
+  <property generated="never" lazy="false" name="sgRegione" type="string">
+   <column length="45" name="sg_regione"/>
+  </property>
+  <property generated="never" lazy="false" name="sgNazione" type="string">
+   <column length="20" name="sg_nazione"/>
+  </property>
+  <property generated="never" lazy="false" name="sgNote" type="string">
+   <column length="100" name="sg_note"/>
+  </property>
+  <property generated="never" lazy="false" name="sgGrado" type="string">
+   <column length="45" name="sg_grado"/>
+  </property>
+  <property generated="never" lazy="false" name="sgDeleted" type="java.lang.Boolean">
+  	<!-- 0 = False; 1 = True; -->
+   	<column name="sg_deleted"/>
+  </property>
+  <set fetch="select" inverse="true" lazy="true" name="wsSeziones" sort="unsorted" table="ws_sezione">
+   <key>
+    <column name="sg_id"/>
+   </key>
+   <one-to-many class="it.awta.awtagest.WsSezione"/>
+  </set>
+  <set fetch="select" lazy="false" name="istruttores" sort="unsorted" table="istruzione">
+   <key>
+    <column name="sg_id" not-null="true"/>
+   </key>
+   <many-to-many entity-name="it.awta.awtagest.Istruttore" unique="false">
+    <column name="ist_id" not-null="true"/>
+   </many-to-many>
+  </set>
+  <set fetch="select" inverse="true" lazy="true" name="wtEsames" sort="unsorted" table="wt_esame">
+   <key>
+    <column name="sg_id" not-null="true"/>
+   </key>
+   <one-to-many class="it.awta.awtagest.WtEsame"/>
+  </set>
+  <set fetch="select" inverse="false" lazy="false" name="sgRinnovi" sort="unsorted" table="rinnovo" order-by="dataRinnovo DESC">
+   <key>
+    <column name="sgCodeRinnovo" not-null="true"/>
+   </key>
+   <one-to-many class="it.awta.awtagest.Rinnovo"/>
+  </set>
+ </class>
+ <sql-query name="getAllCognomi">
+		<![CDATA[
+			select distinct sg_cognome
+			from soggetto
+			order by sg_cognome asc
+		]]>
+  </sql-query>
+  <sql-query name="findAllNoDeleted">
+		<return alias="c" class="it.awta.awtagest.Soggetto"/>
+		<![CDATA[
+			SELECT * FROM soggetto where sg_deleted = 0 order by sg_cognome asc
+		]]>
+  </sql-query>
+  <sql-query name="findAllNoRinnovoByData">
+		<return alias="c" class="it.awta.awtagest.Soggetto"/>
+		<![CDATA[
+			SELECT *
+			FROM soggetto as s
+			WHERE s.sg_rinnovo IS NULL AND sg_iscrizione < :data
+			ORDER BY sg_iscrizione DESC
+		]]>
+  </sql-query>
+  <sql-query name="findAllSiRinnovoByData">
+		<return alias="c" class="it.awta.awtagest.Soggetto"/>
+		<![CDATA[
+			SELECT *
+			FROM soggetto as s
+			WHERE s.sg_id in (SELECT sgCodeRinnovo FROM rinnovo WHERE dataRinnovo < :data)
+			ORDER BY sg_iscrizione DESC
+		]]>
+  </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<zk>
+<zscript>
+<![CDATA[
+    import it.awta.awtagest.ScuolaDAO;
+    //fetch all allEvents from database
+    List allScuole = new ScuolaDAO().findAll();
+ 
+]]></zscript>
+<listbox id="lbxEvents">                
+    <listhead>
+        <listheader label="Scuola" width="200px"/>
+        <listheader label="SiFu" width="100px"/>
+    </listhead>
+    <listitem forEach="${allScuole}" value="${each}">
+        <listcell label="${each.sc_nome}"/>
+        <listcell label="${each.sc_sifu}"/>
+    </listitem>
+</listbox>
+<button onClick="salva()" label="Salva"></button>
+<zscript src="query.zs"></zscript>
+</zk>

@@ -1,0 +1,26 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./winDelIstruttore"?>
+<?page title="Eliminazione Istruttore" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="winDelIstruttore" title="Eliminazione Istruttore" border="normal" apply="it.awta.awtagest.DelIstruttoreViewCtrl" width="600px">
+   <bandbox id="bd" mold="rounded" autodrop="true">
+        <attribute name="onCreate"/>
+   			<attribute name="onSelect"/>
+        <bandpopup>
+            <listbox id="lstbxIstruttori" height="248px" width="300px" mold="paging" pageSize="5" onSelect="bd.value=self.selectedItem.label; bd.close();">
+                <listhead>
+                    <listheader label="Nome"/>
+                    <listheader label="Cognome"/>
+                </listhead>
+                <listitem self="@{each=Istruttore}" value="@{Istruttore}">
+                	<listcell label="@{Istruttore.istCognome}"/>
+                	<listcell label="@{Istruttore.istNome}"/>
+                </listitem>
+            </listbox>
+        </bandpopup>
+    </bandbox>
+    <button id="delBtn">
+    	<attribute name="onClick"/>
+    	Cancella
+    </button>
+</window>
+</zk>

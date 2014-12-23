@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-mar-2011 0.22.02 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="it.awta.awtagest.Scuola" table="scuola" catalog="mydb">
+        <id name="scId" type="java.lang.Integer">
+            <column name="sc_id" />
+            <generator class="identity" />
+        </id>
+        <property name="scNome" type="string">
+            <column name="sc_nome" length="45" />
+        </property>
+        <property name="scIndirizzo" type="string">
+            <column name="sc_indirizzo" length="45" />
+        </property>
+        <property name="scComune" type="string">
+            <column name="sc_comune" length="45" />
+        </property>
+        <property name="scRegione" type="string">
+            <column name="sc_regione" length="45" />
+        </property>
+        <property name="scNazione" type="string">
+            <column name="sc_nazione" length="45" />
+        </property>
+        <property name="scNote" type="string">
+            <column name="sc_note" length="100" />
+        </property>
+        <property name="scProvincia" type="string">
+            <column name="sc_provincia" length="2" />
+        </property>
+        <set name="soggettos" table="soggetto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sc_id" not-null="true" />
+            </key>
+            <one-to-many class="it.awta.awtagest.Soggetto" />
+        </set>
+    </class>
+	<sql-query name="getAllComuni">
+		<![CDATA[
+			select distinct sc_comune
+			from scuola
+			order by sc_comune asc
+		]]>
+  </sql-query>
+</hibernate-mapping>

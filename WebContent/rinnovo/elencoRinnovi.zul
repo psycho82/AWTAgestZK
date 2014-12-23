@@ -1,0 +1,36 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./winElencoRinnovi"?>
+<?page title="Elenco rinnovi" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Elenco rinnovi" border="normal" apply="it.awta.awtagest.ElencoRinnoviViewCtrl" id="winElencoRinnovi">
+<vbox spacing="10px" align="start">
+	<hbox align="center" spacing="10px">
+		<label value="Numero Tessera:"/>
+		<intbox id="SgCode" width="100px"/>
+		<button id="findBtn" label="Cerca"/>
+	</hbox>
+	<hbox align="center" spacing="10px">
+		<label value="Studente:"/>
+		<label id="sgNomeCognome"/>
+	</hbox>
+	<hbox align="center" spacing="10px">
+		<label value="Ingresso AWTA:"/>
+		<label id="sgIngresso"/>
+	</hbox>
+	<hbox align="center" spacing="10px">
+		<label value="Ultimo Rinnovo:"/>
+		<label id="rinUltimo"/>
+	</hbox>
+	<listbox width="300px" mold="paging" pageSize="10" id="lstbxRinnovi" visible="true" model="@{Rinnovo}">
+			<auxhead>
+				<auxheader colspan="1" align="center" label="Lista rinnovi effettuati"></auxheader>
+			</auxhead>
+        <listhead>
+            <listheader label="Data Rinnovo"/>
+        </listhead>
+                <listitem self="@{each=Rinnovo}" value="@{Rinnovo}">
+                	<listcell label="@{Rinnovo.stringRinnovo}"/>
+                </listitem>
+	</listbox>
+</vbox>
+</window>
+</zk>

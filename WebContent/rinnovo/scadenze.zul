@@ -1,0 +1,35 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./winScadenze"?>
+<?page title="Elenco Scadenze" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="winScadenze" title="Elenco Scadenze" border="normal" apply="it.awta.awtagest.ScadenzeViewCtrl" width="700px">
+   	<hbox>
+	   	<vbox>
+	   		<label>Scadenze fino al</label>
+	   		<datebox id="dbxStart" format="dd-MM-yyyy"/>
+	   	</vbox>
+	</hbox>
+	<button id="findBtn">Cerca</button>
+    <separator orient="horizontal" height="20px"/>
+    <listbox id="lstbxStudenti" width="100%" mold="paging" pageSize="15" model="@{Soggetto}" visible="false">
+				<auxhead>
+					<auxheader colspan="5" align="center" label="Elenco scadenze"></auxheader>
+				</auxhead>
+                <listhead>
+                    <listheader label="Cognome" hflex="4"/>
+                    <listheader label="Nome" hflex="4"/>
+                    <listheader label="Tessera" hflex="2"/>
+                    <listheader label="Scuola" hflex="3"/>
+                    <listheader label="Scadenza" hflex="2"/>
+                    <listheader label="Grado" hflex="2"/>
+                </listhead>
+                <listitem self="@{each=soggetto}" value="@{soggetto}">
+                	<listcell label="@{soggetto.sgCognome}"/>
+                	<listcell label="@{soggetto.sgNome}"/>
+                	<listcell label="@{soggetto.sgCode}"/>
+                	<listcell label="@{soggetto.scuola.scNome}"/>
+                	<listcell label="@{soggetto.sgIscrizione}"/>
+                	<listcell label="@{soggetto.sgGrado}"/>
+                </listitem>
+	</listbox>
+</window>
+</zk>

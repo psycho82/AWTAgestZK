@@ -1,0 +1,30 @@
+<?page title="Inserimento Rinnovo" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Inserimento Rinnovo" border="normal" apply="it.awta.awtagest.AddRinnovoViewCtrl">
+<separator orient="horizontal" height="20px"/>
+<vbox spacing="10px" align="start">
+	<hbox align="center" spacing="10px">
+		<label value="Numero Tessera:"/>
+		<intbox id="SgCode" width="100px"/>
+		<button id="findBtn" label="Cerca"/>
+	</hbox>
+	<hbox align="center" spacing="10px">
+		<label value="Studente:"/>
+		<label id="sgNomeCognome"/>
+	</hbox>
+	<hbox align="center" spacing="10px">
+		<label value="Ingresso AWTA:"/>
+		<label id="sgIngresso"/>
+	</hbox>
+	<hbox align="center" spacing="10px">
+		<label value="Ultimo Rinnovo:"/>
+		<label id="rinUltimo"/>
+	</hbox>
+	<hbox align="center" spacing="10px">
+		<label value="Nuovo Rinnovo:"/>
+		<datebox id="rinData" format="dd MMMM yyyy" width="110px" constraint="no empty"/>
+	</hbox>
+	<button id="saveBtn" label="Salva"/>
+</vbox>
+</window>
+</zk>

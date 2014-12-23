@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-mar-2011 23.50.11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="it.awta.awtagest.Insegnamento" table="insegnamento" catalog="mydb">
+        <composite-id name="id" class="it.awta.awtagest.InsegnamentoId">
+            <key-property name="sifuId" type="int">
+                <column name="sifu_id" />
+            </key-property>
+            <key-property name="sgId" type="int">
+                <column name="sg_id" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-mar-2011 0.22.02 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class catalog="mydb" name="it.awta.awtagest.WsSezione" table="ws_sezione">
+  <id name="wssezId" type="int">
+   <column name="wssez_id"/>
+   <generator class="identity"/>
+  </id>
+  <many-to-one class="it.awta.awtagest.Sezione" fetch="select" name="sezione">
+   <column length="45" name="sez_nome"/>
+  </many-to-one>
+  <many-to-one class="it.awta.awtagest.Soggetto" fetch="select" name="soggetto">
+   <column name="sg_id"/>
+  </many-to-one>
+  <property generated="never" lazy="false" name="wssezAttestato" type="string">
+   <column length="45" name="wssez_attestato"/>
+  </property>
+  <property generated="never" lazy="false" name="wssezGrado" type="string">
+   <column length="45" name="wssez_grado"/>
+  </property>
+  <property generated="never" lazy="false" name="wssezData" type="date">
+   <column length="0" name="wssez_data"/>
+  </property>
+  <property generated="never" lazy="false" name="wssezInsSifu" type="string">
+   <column length="45" name="wssez_ins_sifu"/>
+  </property>
+  <property generated="never" lazy="false" name="wssezCitta" type="string">
+   <column length="45" name="wssez_citta"/>
+  </property>
+ </class>
+	<sql-query name="wsSezionesFromGrado">
+		<return-scalar column="tot" type="int"/>
+		<![CDATA[
+			SELECT COUNT(*) as tot
+			FROM ws_sezione w
+			WHERE wssez_grado = :wssez_grado and sg_id = :sg_id
+		]]>
+  </sql-query>
+</hibernate-mapping>
